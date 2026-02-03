@@ -203,6 +203,19 @@ filterBtns.forEach(btn => {
     });
 });
 
+// ===== EMAILJS CONFIGURATION =====
+// TODO: Replace these with your actual EmailJS credentials
+const EMAILJS_PUBLIC_KEY = 'Yy08UM0-RcHe1IsqJ';  // Get from EmailJS Dashboard > Account > API Keys
+const EMAILJS_SERVICE_ID = 'service_7kihxpu';  // Get from EmailJS Dashboard > Email Services
+const EMAILJS_TEMPLATE_ID = 'template_u2j1r6l'; // Get from EmailJS Dashboard > Email Templates
+
+// Initialize EmailJS
+(function() {
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+    }
+})();
+
 // ===== CONTACT FORM =====
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -224,18 +237,34 @@ contactForm.addEventListener('submit', (e) => {
         return;
     }
 
-    // Simulate form submission
+    // Show loading state
     const submitBtn = contactForm.querySelector('.btn-submit');
     const originalText = submitBtn.innerHTML;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     submitBtn.disabled = true;
 
-    setTimeout(() => {
-        showNotification('Message sent successfully!', 'success');
-        contactForm.reset();
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-    }, 2000);
+    // Send email using EmailJS
+    const templateParams = {
+        from_name: data.name,
+        from_email: data.email,
+        subject: data.subject,
+        message: data.message,
+        to_name: 'Arvin Joy Pangalo' // Your name
+    };
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+        .then(() => {
+            showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+            contactForm.reset();
+        })
+        .catch((error) => {
+            console.error('EmailJS Error:', error);
+            showNotification('Failed to send message. Please try again or email me directly.', 'error');
+        })
+        .finally(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
 });
 
 // ===== NOTIFICATION =====
@@ -398,6 +427,238 @@ document.addEventListener('mousemove', (e) => {
     }
 });
 
+// ===== MINIWAY GALLERY =====
+const miniwayModal = document.getElementById('miniway-modal');
+const miniwayGallery = document.getElementById('miniway-gallery');
+const miniwayThumbnails = document.getElementById('miniway-thumbnails');
+const miniwayClose = document.getElementById('miniway-close');
+const galleryPrev = document.getElementById('gallery-prev');
+const galleryNext = document.getElementById('gallery-next');
+const currentImageSpan = document.getElementById('current-image');
+const totalImagesSpan = document.getElementById('total-images');
+const galleryTriggers = document.querySelectorAll('.gallery-trigger');
+
+// Total number of Miniway images (update this to match your actual count)
+const TOTAL_MINIWAY_IMAGES = 3;
+let currentMiniwayImage = 0;
+let miniwayImages = [];
+
+// Generate image paths (assuming images are named 1.jpeg, 2.jpeg, etc. in images/miniway folder)
+function initMiniwayGallery() {
+    miniwayImages = [];
+    for (let i = 1; i <= TOTAL_MINIWAY_IMAGES; i++) {
+        miniwayImages.push(`images/miniway/${i}.jpeg`);
+    }
+    totalImagesSpan.textContent = TOTAL_MINIWAY_IMAGES;
+}
+
+// Load main image
+function loadMainImage(index) {
+    currentMiniwayImage = index;
+    miniwayGallery.innerHTML = `<img src="${miniwayImages[index]}" alt="Miniway Screenshot ${index + 1}" loading="lazy">`;
+    currentImageSpan.textContent = index + 1;
+    
+    // Update thumbnail active state
+    const thumbnails = miniwayThumbnails.querySelectorAll('.thumbnail');
+    thumbnails.forEach((thumb, i) => {
+        thumb.classList.toggle('active', i === index);
+    });
+    
+    // Scroll thumbnail into view
+    if (thumbnails[index]) {
+        thumbnails[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+}
+
+// Load thumbnails (lazy load in batches)
+function loadThumbnails() {
+    miniwayThumbnails.innerHTML = '';
+    miniwayImages.forEach((src, index) => {
+        const thumb = document.createElement('div');
+        thumb.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+        thumb.innerHTML = `<img src="${src}" alt="Thumbnail ${index + 1}" loading="lazy">`;
+        thumb.addEventListener('click', () => loadMainImage(index));
+        miniwayThumbnails.appendChild(thumb);
+    });
+}
+
+// Open gallery modal
+function openMiniwayModal() {
+    initMiniwayGallery();
+    loadThumbnails();
+    loadMainImage(0);
+    miniwayModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close gallery modal
+function closeMiniwayModal() {
+    miniwayModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Navigation
+function nextImage() {
+    const newIndex = (currentMiniwayImage + 1) % miniwayImages.length;
+    loadMainImage(newIndex);
+}
+
+function prevImage() {
+    const newIndex = (currentMiniwayImage - 1 + miniwayImages.length) % miniwayImages.length;
+    loadMainImage(newIndex);
+}
+
+// Event listeners for gallery
+galleryTriggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openMiniwayModal();
+    });
+});
+
+if (miniwayClose) {
+    miniwayClose.addEventListener('click', closeMiniwayModal);
+}
+
+if (galleryNext) {
+    galleryNext.addEventListener('click', nextImage);
+}
+
+if (galleryPrev) {
+    galleryPrev.addEventListener('click', prevImage);
+}
+
+// Close on outside click
+if (miniwayModal) {
+    miniwayModal.addEventListener('click', (e) => {
+        if (e.target === miniwayModal) {
+            closeMiniwayModal();
+        }
+    });
+}
+
+// Keyboard navigation for gallery
+document.addEventListener('keydown', (e) => {
+    if (miniwayModal && miniwayModal.classList.contains('active')) {
+        if (e.key === 'Escape') {
+            closeMiniwayModal();
+        } else if (e.key === 'ArrowRight') {
+            nextImage();
+        } else if (e.key === 'ArrowLeft') {
+            prevImage();
+        }
+    }
+    // Admin gallery keyboard navigation
+    if (adminModal && adminModal.classList.contains('active')) {
+        if (e.key === 'Escape') {
+            closeAdminModal();
+        } else if (e.key === 'ArrowRight') {
+            nextAdminImage();
+        } else if (e.key === 'ArrowLeft') {
+            prevAdminImage();
+        }
+    }
+});
+
+// ===== ADMIN DASHBOARD GALLERY =====
+const adminModal = document.getElementById('admin-modal');
+const adminGallery = document.getElementById('admin-gallery');
+const adminThumbnails = document.getElementById('admin-thumbnails');
+const adminClose = document.getElementById('admin-close');
+const adminGalleryPrev = document.getElementById('admin-gallery-prev');
+const adminGalleryNext = document.getElementById('admin-gallery-next');
+const adminCurrentImageSpan = document.getElementById('admin-current-image');
+const adminTotalImagesSpan = document.getElementById('admin-total-images');
+const adminGalleryTriggers = document.querySelectorAll('.admin-gallery-trigger');
+
+// Admin dashboard images
+const adminImages = [
+    'images/miniway/admindashboard.png',
+    'images/miniway/analytics.png',
+    'images/miniway/route.png'
+];
+let currentAdminImage = 0;
+
+// Load admin main image
+function loadAdminMainImage(index) {
+    currentAdminImage = index;
+    adminGallery.innerHTML = `<img src="${adminImages[index]}" alt="Admin Dashboard Screenshot ${index + 1}" loading="lazy">`;
+    adminCurrentImageSpan.textContent = index + 1;
+    
+    // Update thumbnail active state
+    const thumbnails = adminThumbnails.querySelectorAll('.thumbnail');
+    thumbnails.forEach((thumb, i) => {
+        thumb.classList.toggle('active', i === index);
+    });
+}
+
+// Load admin thumbnails
+function loadAdminThumbnails() {
+    adminThumbnails.innerHTML = '';
+    adminImages.forEach((src, index) => {
+        const thumb = document.createElement('div');
+        thumb.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+        thumb.innerHTML = `<img src="${src}" alt="Thumbnail ${index + 1}" loading="lazy">`;
+        thumb.addEventListener('click', () => loadAdminMainImage(index));
+        adminThumbnails.appendChild(thumb);
+    });
+}
+
+// Open admin gallery modal
+function openAdminModal() {
+    adminTotalImagesSpan.textContent = adminImages.length;
+    loadAdminThumbnails();
+    loadAdminMainImage(0);
+    adminModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close admin gallery modal
+function closeAdminModal() {
+    adminModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Admin navigation
+function nextAdminImage() {
+    const newIndex = (currentAdminImage + 1) % adminImages.length;
+    loadAdminMainImage(newIndex);
+}
+
+function prevAdminImage() {
+    const newIndex = (currentAdminImage - 1 + adminImages.length) % adminImages.length;
+    loadAdminMainImage(newIndex);
+}
+
+// Event listeners for admin gallery
+adminGalleryTriggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openAdminModal();
+    });
+});
+
+if (adminClose) {
+    adminClose.addEventListener('click', closeAdminModal);
+}
+
+if (adminGalleryNext) {
+    adminGalleryNext.addEventListener('click', nextAdminImage);
+}
+
+if (adminGalleryPrev) {
+    adminGalleryPrev.addEventListener('click', prevAdminImage);
+}
+
+// Close admin modal on outside click
+if (adminModal) {
+    adminModal.addEventListener('click', (e) => {
+        if (e.target === adminModal) {
+            closeAdminModal();
+        }
+    });
+}
+
 // ===== INITIALIZE =====
 document.addEventListener('DOMContentLoaded', () => {
     // Initial skill bar check
@@ -413,3 +674,4 @@ document.addEventListener('DOMContentLoaded', () => {
 console.log('%c👋 Hello there, curious developer!', 'font-size: 20px; font-weight: bold; color: #6c63ff;');
 console.log('%cFeel free to explore the code!', 'font-size: 14px; color: #00d9ff;');
 console.log('%cPortfolio created with ❤️ by John Doe', 'font-size: 12px; color: #a0a0b0;');
+

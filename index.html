@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
     <!-- Preloader -->
@@ -389,195 +391,142 @@
                 <span class="section-subtitle">My Recent Work</span>
                 <h2 class="section-title">Projects</h2>
             </div>
-            <div class="projects-filter">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="web">Web Apps</button>
-                <button class="filter-btn" data-filter="mobile">Mobile</button>
-                <button class="filter-btn" data-filter="other">Others</button>
-            </div>
             <div class="projects-grid">
-                <div class="project-card" data-category="web">
+                <!-- Miniway Project - Featured -->
+                <div class="project-card featured-project" data-category="mobile">
+                    <div class="project-badge">Featured</div>
                     <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-shopping-cart"></i>
+                        <div class="project-placeholder miniway-bg">
+                            <img src="images/miniway/logo.png" alt="ARVIN JOY PANGALO" class="logo-png" loading="lazy">
                         </div>
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="#" class="project-link" title="View Demo">
-                                    <i class="fas fa-external-link-alt"></i>
+                                <a href="#miniway-modal" class="project-link gallery-trigger" title="View Gallery">
+                                    <i class="fas fa-images"></i>
                                 </a>
-                                <a href="#" class="project-link" title="View Code">
+                                <a href="https://github.com/aj-tech-24/miniway2.0" target="_blank" class="project-link" title="View Code">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="project-info">
-                        <h3 class="project-title">E-Commerce Platform</h3>
+                        <h3 class="project-title">Miniway</h3>
                         <p class="project-description">
-                            A full-featured online shopping platform with cart functionality, 
-                            payment integration, and admin dashboard.
-                        </p>
-                        <div class="project-tech">
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>MongoDB</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="web">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-tasks"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link" title="View Demo">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                                <a href="#" class="project-link" title="View Code">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Task Management System</h3>
-                        <p class="project-description">
-                            A collaborative project management tool with real-time updates, 
-                            task assignments, and progress tracking.
-                        </p>
-                        <div class="project-tech">
-                            <span>PHP</span>
-                            <span>MySQL</span>
-                            <span>JavaScript</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="mobile">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-heartbeat"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link" title="View Demo">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                                <a href="#" class="project-link" title="View Code">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Health Tracker App</h3>
-                        <p class="project-description">
-                            A mobile application for tracking fitness goals, nutrition, 
-                            and daily health metrics with visual analytics.
+                            A real-time public transport tracking and digital ticketing system 
+                            designed for informal mini bus operations. Modernizing how commuters, 
+                            drivers, conductors, and operators interact with public transport — 
+                            from uncertainty to clarity and reliability.
                         </p>
                         <div class="project-tech">
                             <span>React Native</span>
-                            <span>Firebase</span>
+                            <span>Expo</span>
+                            <span>Supabase</span>
+                            <span>Real-time GPS</span>
+                        </div>
+                        <div class="project-features">
+                            <span><i class="fas fa-map-marker-alt"></i> Real-time Tracking</span>
+                            <span><i class="fas fa-ticket-alt"></i> Digital Ticketing</span>
+                            <span><i class="fas fa-users"></i> Multi-user Roles</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Miniway Admin Dashboard -->
+                <div class="project-card featured-project" data-category="web">
+                    <div class="project-badge">Web App</div>
+                    <div class="project-image">
+                        <div class="project-placeholder admin-dashboard-bg">
+                            <img src="images/miniway/admindashboard.png" alt="Miniway Admin Dashboard" class="dashboard-preview" loading="lazy">
+                        </div>
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#admin-modal" class="project-link admin-gallery-trigger" title="View Gallery">
+                                    <i class="fas fa-images"></i>
+                                </a>
+                                <a href="https://github.com/aj-tech-24/admin-dashboard" target="_blank" class="project-link" title="View Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Miniway Admin Dashboard</h3>
+                        <p class="project-description">
+                            A comprehensive web-based admin dashboard for the Miniway system. 
+                            Enables operators to manage routes, monitor fleet analytics, 
+                            track real-time vehicle locations, and oversee digital ticketing operations.
+                        </p>
+                        <div class="project-tech">
+                            <span>React/Next.js</span>
+                            <span>Supabase</span>
                             <span>Chart.js</span>
+                            <span>Tailwind CSS</span>
                         </div>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="web">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link" title="View Demo">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                                <a href="#" class="project-link" title="View Code">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Learning Management System</h3>
-                        <p class="project-description">
-                            An educational platform with course management, quiz features, 
-                            and student progress tracking.
-                        </p>
-                        <div class="project-tech">
-                            <span>Laravel</span>
-                            <span>Vue.js</span>
-                            <span>MySQL</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="other">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link" title="View Demo">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                                <a href="#" class="project-link" title="View Code">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">AI Chatbot Assistant</h3>
-                        <p class="project-description">
-                            An intelligent chatbot using natural language processing 
-                            to provide automated customer support.
-                        </p>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>TensorFlow</span>
-                            <span>Flask</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="other">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link" title="View Demo">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                                <a href="#" class="project-link" title="View Code">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Data Analytics Dashboard</h3>
-                        <p class="project-description">
-                            A comprehensive dashboard for visualizing and analyzing 
-                            business data with interactive charts.
-                        </p>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>Pandas</span>
-                            <span>D3.js</span>
+                        <div class="project-features">
+                            <span><i class="fas fa-chart-bar"></i> Analytics Dashboard</span>
+                            <span><i class="fas fa-route"></i> Route Management</span>
+                            <span><i class="fas fa-cogs"></i> System Control</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Miniway Admin Dashboard Gallery Modal -->
+    <div class="miniway-modal" id="admin-modal">
+        <div class="miniway-modal-content">
+            <button class="miniway-modal-close" id="admin-close">&times;</button>
+            <div class="miniway-header">
+                <h2><i class="fas fa-tachometer-alt"></i> Miniway Admin Dashboard</h2>
+                <p>Web-based Management System for Miniway Operations</p>
+                <a href="https://github.com/aj-tech-24/admin-dashboard" target="_blank" class="btn btn-primary btn-sm">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </div>
+            <div class="miniway-gallery-container">
+                <button class="gallery-nav prev" id="admin-gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="miniway-gallery" id="admin-gallery">
+                    <!-- Images will be loaded dynamically -->
+                </div>
+                <button class="gallery-nav next" id="admin-gallery-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="gallery-counter">
+                <span id="admin-current-image">1</span> / <span id="admin-total-images">3</span>
+            </div>
+            <div class="miniway-thumbnails" id="admin-thumbnails">
+                <!-- Thumbnails will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Miniway Gallery Modal -->
+    <div class="miniway-modal" id="miniway-modal">
+        <div class="miniway-modal-content">
+            <button class="miniway-modal-close" id="miniway-close">&times;</button>
+            <div class="miniway-header">
+                <h2><i class="fas fa-bus"></i> MiniwayGallery</h2>
+                <p>Real-time Public Transport Tracking & Digital Ticketing System</p>
+                <a href="https://github.com/aj-tech-24/miniway2.0" target="_blank" class="btn btn-primary btn-sm">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </div>
+            <div class="miniway-gallery-container">
+                <button class="gallery-nav prev" id="gallery-prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="miniway-gallery" id="miniway-gallery">
+                    <!-- Images will be loaded dynamically -->
+                </div>
+                <button class="gallery-nav next" id="gallery-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="gallery-counter">
+                <span id="current-image">1</span> / <span id="total-images">3</span>
+            </div>
+            <div class="miniway-thumbnails" id="miniway-thumbnails">
+                <!-- Thumbnails will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
 
     <!-- Education Section -->
     <section id="education" class="education section">
@@ -768,7 +717,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <span class="logo-text">JD</span>
+                    <span class="logo-text">AJP</span>
                     <p>BSIT Student Portfolio</p>
                 </div>
                 <div class="footer-links">
@@ -785,7 +734,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 John Doe. All rights reserved. | Crafted with <i class="fas fa-heart"></i></p>
+                <p>&copy; 2026 Arvin Joy Pangalo. All rights reserved. | Crafted with <i class="fas fa-heart"></i></p>
             </div>
         </div>
     </footer>
@@ -811,6 +760,7 @@
         </div>
     </div>
 
+    <script src="js/config.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
