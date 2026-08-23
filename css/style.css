@@ -292,11 +292,18 @@ input, textarea {
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    background: var(--accent-primary);
-    color: #ffffff;
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 0.85rem;
+    overflow: hidden;
+    background: var(--bg-subtle);
+    border: 1.5px solid var(--border-medium);
+    flex-shrink: 0;
+}
+
+.brand-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
 }
 
 .brand-text {
@@ -1848,16 +1855,47 @@ a.cli-val:hover {
 }
 
 @media (max-width: 768px) {
+    .header {
+        top: 0.75rem;
+        padding: 0 0.75rem;
+    }
+
+    .nav-container {
+        padding: 0.4rem 0.65rem 0.4rem 0.85rem;
+    }
+
     .nav-center {
         display: none;
+    }
+
+    .btn-nav-primary {
+        display: none;
+    }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
     }
 
     .nav-toggle {
         display: flex;
     }
 
+    .brand-name {
+        font-size: 0.88rem;
+    }
+
+    .brand-role {
+        font-size: 0.68rem;
+    }
+
+    .hero-section {
+        padding-top: 6.5rem;
+    }
+
     .hero-title {
-        font-size: 2.35rem;
+        font-size: 2.2rem;
     }
 
     .quick-meta-strip {
@@ -1921,5 +1959,37 @@ a.cli-val:hover {
         bottom: 1rem;
         right: 1rem;
         left: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-role {
+        display: none;
+    }
+
+    .brand {
+        gap: 0.6rem;
+    }
+
+    .brand-name {
+        font-size: 0.88rem;
+    }
+
+    .brand-avatar {
+        width: 32px;
+        height: 32px;
+    }
+
+    .hero-title {
+        font-size: 1.95rem;
+    }
+
+    .hero-section {
+        padding-top: 5.5rem;
+    }
+
+    .status-badge {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.65rem;
     }
 }

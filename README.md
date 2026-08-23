@@ -8,7 +8,7 @@ Hi, I'm **AJ Pangalo** — a passionate **Web Developer**, **UI/UX Designer**, a
 
 ## 🌐 Live Site
 
-🔗 **[View My Portfolio](https://aj-tech-24.github.io/portfolio)**
+🔗 **[View My Portfolio](https://arvinjoypangalo.vercel.app/)**
 
 ## ✨ What You'll Find Here
 
