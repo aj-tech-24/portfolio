@@ -1,2 +1,3 @@
 # EmailJS Config (contains API keys)
 js/config.js
+js/email-config.js

@@ -1,766 +1,900 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arvin Joy Pangalo | BSIT Student Portfolio</title>
+    <title>Arvin Joy M. Pangalo — Software Developer & BSIT Candidate</title>
+    <meta name="description"
+        content="Portfolio of Arvin Joy M. Pangalo — BSIT Graduate-level candidate with hands-on experience in full-stack web and mobile application development, Supabase, React Native, Next.js, and GIS routing.">
+    <meta name="keywords"
+        content="Arvin Joy Pangalo, Arvin Joy M. Pangalo, Software Developer, Junior Developer, BSIT, React Native, Next.js, Supabase, TypeScript, Miniway">
+
+    <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom CSS (Minimalist Light Design System) -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
-<body>
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="loader"></div>
-    </div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <span class="logo-text">AJP</span>
+<body class="theme-light">
+    <!-- Ambient Background Accents -->
+    <div class="ambient-mesh"></div>
+
+    <!-- Minimalist Floating Header -->
+    <header class="header">
+        <nav class="nav-container" aria-label="Main Navigation">
+            <a href="#home" class="brand" aria-label="Arvin Joy M. Pangalo Home">
+                <span class="brand-avatar">AP</span>
+                <div class="brand-text">
+                    <span class="brand-name">Arvin Joy M. Pangalo</span>
+                    <span class="brand-role">Web|Software Developer</span>
+                </div>
             </a>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-particles"></div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <span class="greeting">Hello, I'm</span>
-                <h1 class="name">ARVIN JOY PANGALO</h1>
-                <div class="typing-container">
-                    <span class="static-text">I'm a </span>
-                    <span class="dynamic-text"></span>
-                    <span class="cursor">|</span>
-                </div>
-                <p class="hero-description">
-                    A passionate BSIT student dedicated to creating innovative solutions 
-                    through technology. Transforming ideas into reality, one line of code at a time.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">
-                        <span>View My Work</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <span>Get In Touch</span>
-                    </a>
-                </div>
-                <div class="social-links">
-                    <a href="#" class="social-link" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="social-link" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="#" class="social-link" aria-label="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-link" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
+            <div class="nav-center">
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#education" class="nav-link">Education</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
             </div>
-            <div class="hero-image">
-                <div class="image-wrapper">
-                    <div class="image-border"></div>
-                    <div class="profile-placeholder">
-                        <img src="images/me-uni.png" alt="ARVIN JOY PANGALO" class="profile-img" loading="lazy">
-                    </div>
-                </div>
-                <div class="floating-icons">
-                    <div class="float-icon icon-1"><i class="fab fa-html5"></i></div>
-                    <div class="float-icon icon-2"><i class="fab fa-css3-alt"></i></div>
-                    <div class="float-icon icon-3"><i class="fab fa-js"></i></div>
-                    <div class="float-icon icon-4"><i class="fab fa-react"></i></div>
-                    <div class="float-icon icon-5"><i class="fab fa-python"></i></div>
-                    <div class="float-icon icon-6"><i class="fas fa-database"></i></div>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
-            <span>Scroll Down</span>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="about section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">Get To Know</span>
-                <h2 class="section-title">About Me</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-image">
-                    <div class="about-img-wrapper">
-                        <div class="about-placeholder">
-                           <img src="images/me-coat.png" alt="ARVIN JOY PANGALO" class="profile-img" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-                <div class="about-text">
-                    <div class="about-cards">
-                            <div class="about-card">
-                            <i class="fas fa-folder-open"></i>
-                            <h3>Projects</h3>
-                            <p> Completed</p>
-                        </div>
-                        <div class="about-card">
-                            <i class="fas fa-certificate"></i>
-                            <h3>Certifications</h3>
-                            <p>4 Earned</p>
-                        </div>
-                    </div>
-                    <p class="about-description">
-                        I am a dedicated Bachelor of Science in Information Technology student with a 
-                        strong passion for software development and web technologies. My journey in 
-                        tech started with curiosity about how things work, which evolved into a 
-                        deep love for creating digital solutions.
-                    </p>
-                    <p class="about-description">
-                        I specialize in full-stack web development, with experience in modern 
-                        frameworks and technologies. I'm constantly learning and adapting to new 
-                        technologies to stay ahead in this ever-evolving field.
-                    </p>
-                    <a href="#contact" class="btn btn-primary">
-                        <span>Let's Talk</span>
-                        <i class="fas fa-comments"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">My Abilities</span>
-                <h2 class="section-title">Technical Skills</h2>
-            </div>
-            <div class="skills-content">
-                <div class="skills-category">
-                    <h3 class="category-title">
-                        <i class="fas fa-code"></i>
-                        Programming Languages
-                    </h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fab fa-java"></i>
-                            </div>
-                            <span class="skill-name">Java</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="85"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fab fa-js"></i>
-                            </div>
-                            <span class="skill-name">JavaScript</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="85"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fab fa-php"></i>
-                            </div>
-                            <span class="skill-name">PHP</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="80"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <span class="skill-name">SQL</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="80"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skills-category">
-                    <h3 class="category-title">
-                        <i class="fas fa-laptop-code"></i>Mobile &
-                        Web Development
-                    </h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fab fa-html5"></i>
-                            </div>
-                            <span class="skill-name">HTML5</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="90"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fab fa-css3-alt"></i>
-                            </div>
-                            <span class="skill-name">CSS3</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="90"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fab fa-laravel"></i>
-                            </div>
-                            <span class="skill-name">Laravel PHP</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="75"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fab fa-react"></i>
-                            </div>
-                            <span class="skill-name">React.js / React Native</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="80"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <span class="skill-name">Expo Framework</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="75"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skills-category">
-                    <h3 class="category-title">
-                        <i class="fas fa-server"></i>
-                        Database & Backend
-                    </h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <span class="skill-name">MySQL</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="85"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <span class="skill-name">Supabase</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="75"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fab fa-github"></i>
-                            </div>
-                            <span class="skill-name">GitHub (Version Control)</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="80"></div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="skills-category">
-                    <h3 class="category-title">
-                        <i class="fas fa-tools"></i>
-                        Tools & Software
-                    </h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <span class="skill-name">Visual Studio Code</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="90"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fab fa-figma"></i>
-                            </div>
-                            <span class="skill-name">Figma</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="70"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-palette"></i>
-                            </div>
-                            <span class="skill-name">Canva</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="80"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fab fa-microsoft"></i>
-                            </div>
-                            <span class="skill-name">MS Office Suite</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="85"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skills-category">
-                    <h3 class="category-title">
-                        <i class="fas fa-network-wired"></i>
-                        IT & Hardware
-                    </h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-desktop"></i>
-                            </div>
-                            <span class="skill-name">PC Assembly & Troubleshooting</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="75"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-network-wired"></i>
-                            </div>
-                            <span class="skill-name">LAN Networking</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="65"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fas fa-user-cog"></i>
-                            </div>
-                            <span class="skill-name">System Administration</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="65"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon">
-                                <i class="fab fa-unity"></i>
-                            </div>
-                            <span class="skill-name">Unity (Basic)</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-progress="50"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">My Recent Work</span>
-                <h2 class="section-title">Projects</h2>
-            </div>
-            <div class="projects-grid">
-                <!-- Miniway Project - Featured -->
-                <div class="project-card featured-project" data-category="mobile">
-                    <div class="project-badge">Featured</div>
-                    <div class="project-image">
-                        <div class="project-placeholder miniway-bg">
-                            <img src="images/miniway/logo.png" alt="ARVIN JOY PANGALO" class="logo-png" loading="lazy">
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#miniway-modal" class="project-link gallery-trigger" title="View Gallery">
-                                    <i class="fas fa-images"></i>
-                                </a>
-                                <a href="https://github.com/aj-tech-24/miniway2.0" target="_blank" class="project-link" title="View Code">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Miniway</h3>
-                        <p class="project-description">
-                            A real-time public transport tracking and digital ticketing system 
-                            designed for informal mini bus operations. Modernizing how commuters, 
-                            drivers, conductors, and operators interact with public transport — 
-                            from uncertainty to clarity and reliability.
-                        </p>
-                        <div class="project-tech">
-                            <span>React Native</span>
-                            <span>Expo</span>
-                            <span>Supabase</span>
-                            <span>Real-time GPS</span>
-                        </div>
-                        <div class="project-features">
-                            <span><i class="fas fa-map-marker-alt"></i> Real-time Tracking</span>
-                            <span><i class="fas fa-ticket-alt"></i> Digital Ticketing</span>
-                            <span><i class="fas fa-users"></i> Multi-user Roles</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Miniway Admin Dashboard -->
-                <div class="project-card featured-project" data-category="web">
-                    <div class="project-badge">Web App</div>
-                    <div class="project-image">
-                        <div class="project-placeholder admin-dashboard-bg">
-                            <img src="images/miniway/admindashboard.png" alt="Miniway Admin Dashboard" class="dashboard-preview" loading="lazy">
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#admin-modal" class="project-link admin-gallery-trigger" title="View Gallery">
-                                    <i class="fas fa-images"></i>
-                                </a>
-                                <a href="https://github.com/aj-tech-24/admin-dashboard" target="_blank" class="project-link" title="View Code">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Miniway Admin Dashboard</h3>
-                        <p class="project-description">
-                            A comprehensive web-based admin dashboard for the Miniway system. 
-                            Enables operators to manage routes, monitor fleet analytics, 
-                            track real-time vehicle locations, and oversee digital ticketing operations.
-                        </p>
-                        <div class="project-tech">
-                            <span>React/Next.js</span>
-                            <span>Supabase</span>
-                            <span>Chart.js</span>
-                            <span>Tailwind CSS</span>
-                        </div>
-                        <div class="project-features">
-                            <span><i class="fas fa-chart-bar"></i> Analytics Dashboard</span>
-                            <span><i class="fas fa-route"></i> Route Management</span>
-                            <span><i class="fas fa-cogs"></i> System Control</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Miniway Admin Dashboard Gallery Modal -->
-    <div class="miniway-modal" id="admin-modal">
-        <div class="miniway-modal-content">
-            <button class="miniway-modal-close" id="admin-close">&times;</button>
-            <div class="miniway-header">
-                <h2><i class="fas fa-tachometer-alt"></i> Miniway Admin Dashboard</h2>
-                <p>Web-based Management System for Miniway Operations</p>
-                <a href="https://github.com/aj-tech-24/admin-dashboard" target="_blank" class="btn btn-primary btn-sm">
-                    <i class="fab fa-github"></i> View on GitHub
+            <div class="nav-actions">
+                <a href="#contact" class="btn-nav-primary">
+                    <span>Get In Touch</span>
+                    <i class="fas fa-arrow-right"></i>
                 </a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-            <div class="miniway-gallery-container">
-                <button class="gallery-nav prev" id="admin-gallery-prev"><i class="fas fa-chevron-left"></i></button>
-                <div class="miniway-gallery" id="admin-gallery">
-                    <!-- Images will be loaded dynamically -->
-                </div>
-                <button class="gallery-nav next" id="admin-gallery-next"><i class="fas fa-chevron-right"></i></button>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <div class="brand">
+                <span class="brand-avatar">AP</span>
+                <span class="brand-name">Arvin Joy M. Pangalo</span>
             </div>
-            <div class="gallery-counter">
-                <span id="admin-current-image">1</span> / <span id="admin-total-images">3</span>
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+        </div>
+        <ul class="drawer-menu">
+            <li><a href="#home" class="drawer-link">01. Home</a></li>
+            <li><a href="#about" class="drawer-link">02. About</a></li>
+            <li><a href="#experience" class="drawer-link">03. Practicum Experience</a></li>
+            <li><a href="#projects" class="drawer-link">04. Selected Projects</a></li>
+            <li><a href="#skills" class="drawer-link">05. Technical Skills</a></li>
+            <li><a href="#education" class="drawer-link">06. Education & Certs</a></li>
+            <li><a href="#contact" class="drawer-link">07. Contact</a></li>
+        </ul>
+        <div class="drawer-footer">
+            <div class="status-pill">
+                <span class="status-indicator"></span>
+                <span>Seeking Junior Developer Role</span>
             </div>
-            <div class="miniway-thumbnails" id="admin-thumbnails">
-                <!-- Thumbnails will be loaded dynamically -->
+            <div class="drawer-contact-info">
+                <a href="mailto:arvinjoypangalo@gmail.com"><i class="fas fa-envelope"></i> arvinjoypangalo@gmail.com</a>
+                <a href="tel:+639604764203"><i class="fas fa-phone"></i> +63 960 476 4203</a>
             </div>
         </div>
     </div>
 
-    <!-- Miniway Gallery Modal -->
-    <div class="miniway-modal" id="miniway-modal">
-        <div class="miniway-modal-content">
-            <button class="miniway-modal-close" id="miniway-close">&times;</button>
-            <div class="miniway-header">
-                <h2><i class="fas fa-bus"></i> MiniwayGallery</h2>
-                <p>Real-time Public Transport Tracking & Digital Ticketing System</p>
-                <a href="https://github.com/aj-tech-24/miniway2.0" target="_blank" class="btn btn-primary btn-sm">
-                    <i class="fab fa-github"></i> View on GitHub
-                </a>
-            </div>
-            <div class="miniway-gallery-container">
-                <button class="gallery-nav prev" id="gallery-prev"><i class="fas fa-chevron-left"></i></button>
-                <div class="miniway-gallery" id="miniway-gallery">
-                    <!-- Images will be loaded dynamically -->
-                </div>
-                <button class="gallery-nav next" id="gallery-next"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div class="gallery-counter">
-                <span id="current-image">1</span> / <span id="total-images">3</span>
-            </div>
-            <div class="miniway-thumbnails" id="miniway-thumbnails">
-                <!-- Thumbnails will be loaded dynamically -->
-            </div>
-        </div>
-    </div>
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="status-badge">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Seeking Entry-Level Junior / Software Developer Role</span>
+                    </div>
 
-    <!-- Education Section -->
-    <section id="education" class="education section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">My Journey</span>
-                <h2 class="section-title">Education & Certifications</h2>
-            </div>
-            <div class="education-content">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-university"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">2022 - Present</span>
-                            <h3 class="timeline-title">Bachelor of Science in Information Technology</h3>
-                            <p class="timeline-institution">Cor Jesu College Inc.</p>
-                            <p class="timeline-description">
-                                Currently pursuing my degree with focus on software development, 
-                                database management, and web technologies.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-school"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">2019 - 2020</span>
-                            <h3 class="timeline-title">Senior High School - Tech-Voc Strand</h3>
-                            <p class="timeline-institution">Mary Mediatrix of All Gracess Academy</p>
-                            <p class="timeline-description">
-                                Graduated with honors. Developed strong foundation in IT concepts, 
-                                networking, and programming.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="certifications">
-                    <h3 class="certifications-title">Certifications</h3>
-                    <div class="cert-grid">
-                        <div class="cert-card" data-cert="images/introcyber.jpg">
-                            <div class="cert-preview">
-                                <img src="images/introcyber.jpg" alt="Introduction to Cybersecurity Certificate" loading="lazy">
-                                <div class="cert-overlay">
-                                    <i class="fas fa-search-plus"></i>
-                                    <span>View Certificate</span>
-                                </div>
-                            </div>
-                            <div class="cert-info">
-                                <h4>Introduction to Cybersecurity</h4>
-                                <p>Cisco Networking Academy</p>
-                                <span class="cert-date">Nov 2025</span>
-                            </div>
-                        </div>
-                        <div class="cert-card" data-cert="images/udemy.jpg">
-                            <div class="cert-preview">
-                                <img src="images/udemy.jpg" alt="HTML, CSS, JavaScript, React Certificate" loading="lazy">
-                                <div class="cert-overlay">
-                                    <i class="fas fa-search-plus"></i>
-                                    <span>View Certificate</span>
-                                </div>
-                            </div>
-                            <div class="cert-info">
-                                <h4>HTML, CSS, JavaScript, React</h4>
-                                <p>Udemy - YouAccel Training</p>
-                                <span class="cert-date">Nov 2024</span>
-                            </div>
-                        </div>
-                        <div class="cert-card" data-cert="images/softwaredev.jpg">
-                            <div class="cert-preview">
-                                <img src="images/softwaredev.jpg" alt="Software Development & Design Thinking Certificate" loading="lazy">
-                                <div class="cert-overlay">
-                                    <i class="fas fa-search-plus"></i>
-                                    <span>View Certificate</span>
-                                </div>
-                            </div>
-                            <div class="cert-info">
-                                <h4>Software Development & Design Thinking</h4>
-                                <p>DICT Region XI</p>
-                                <span class="cert-date">Jul 2025</span>
-                            </div>
-                        </div>
-                        <div class="cert-card" data-cert="images/vibecode.jpg">
-                            <div class="cert-preview">
-                                <img src="images/vibecode.jpg" alt="OpenxAI Vibe Coding Session Certificate" loading="lazy">
-                                <div class="cert-overlay">
-                                    <i class="fas fa-search-plus"></i>
-                                    <span>View Certificate</span>
-                                </div>
-                            </div>
-                            <div class="cert-info">
-                                <h4>OpenxAI Vibe Coding Session</h4>
-                                <p>OpenxAI & Davao DeFi Community</p>
-                                <span class="cert-date">Sep 2025</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <h1 class="hero-title">
+                        Building scalable <span class="highlight-text">mobile & web applications</span> with real-time
+                        systems.
+                    </h1>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">Get In Touch</span>
-                <h2 class="section-title">Contact Me</h2>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Let's talk about everything!</h3>
-                    <p>
-                        Feel free to reach out if you have any questions, opportunities, 
-                        or just want to connect. I'm always excited to discuss new projects 
-                        and ideas.
+                    <p class="hero-summary">
+                        BSIT candidate from <strong>Cor Jesu College</strong> with hands-on experience in full-stack
+                        system development, cloud databases, and geospatial telemetry. Experienced in
+                        <strong>TypeScript, React Native, Next.js, Laravel/PHP</strong>, and <strong>Supabase</strong>.
                     </p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Email</h4>
-                                <a href="mailto:arvinjoypangalo@gmail.com">arvinjoypangalo@gmail.com</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Phone</h4>
-                                <a href="tel:+639604764203">+63 (960) 476-4203</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Location</h4>
-                                <p>Digos City, Davao del Sur, Philippines</p>
-                            </div>
-                        </div>
+
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">
+                            <span>Explore Selected Work</span>
+                            <i class="fas fa-arrow-down"></i>
+                        </a>
+                        <button class="btn btn-secondary" id="copyEmailBtn" data-email="arvinjoypangalo@gmail.com">
+                            <i class="far fa-copy"></i>
+                            <span id="copyEmailText">Copy Email</span>
+                        </button>
+                        <a href="mailto:arvinjoypangalo@gmail.com" class="btn btn-outline">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Send Message</span>
+                        </a>
                     </div>
-                    <div class="contact-social">
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+
+                    <div class="quick-meta-strip">
+                        <div class="meta-item">
+                            <span class="meta-label"><i class="fas fa-location-dot"></i> Location</span>
+                            <span class="meta-val">Digos City, Davao del Sur, PH</span>
+                        </div>
+                        <div class="meta-sep"></div>
+                        <div class="meta-item">
+                            <span class="meta-label"><i class="fas fa-graduation-cap"></i> Degree</span>
+                            <span class="meta-val">BS in Information Technology (2022–2026)</span>
+                        </div>
+                        <div class="meta-sep"></div>
+                        <div class="meta-item">
+                            <span class="meta-label"><i class="fab fa-github"></i> GitHub</span>
+                            <a href="https://github.com/aj-tech-24" target="_blank" rel="noopener"
+                                class="meta-val meta-link">github.com/aj-tech-24</a>
+                        </div>
                     </div>
                 </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder=" " required>
-                        <label for="name">Your Name</label>
-                        <span class="form-icon"><i class="fas fa-user"></i></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder=" " required>
-                        <label for="email">Your Email</label>
-                        <span class="form-icon"><i class="fas fa-envelope"></i></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="subject" name="subject" placeholder=" " required>
-                        <label for="subject">Subject</label>
-                        <span class="form-icon"><i class="fas fa-tag"></i></span>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
-                        <label for="message">Your Message</label>
-                        <span class="form-icon"><i class="fas fa-comment-dots"></i></span>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-submit">
-                        <span>Send Message</span>
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
+                <!-- Interactive Tech Terminal Card -->
+                <div class="hero-card-col">
+                    <div class="terminal-card">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <span class="terminal-title">developer-profile.ts</span>
+                            <span class="terminal-badge">TypeScript</span>
+                        </div>
+                        <div class="terminal-body">
+                            <pre><code><span class="syn-kw">const</span> <span class="syn-var">candidate</span>: <span class="syn-type">SoftwareDeveloper</span> = {
+  <span class="syn-prop">name</span>: <span class="syn-str">'Arvin Joy M. Pangalo'</span>,
+  <span class="syn-prop">degree</span>: <span class="syn-str">'BS in Information Technology'</span>,
+  <span class="syn-prop">institution</span>: <span class="syn-str">'Cor Jesu College'</span>,
+  <span class="syn-prop">coreStack</span>: [
+    <span class="syn-str">'React Native'</span>, <span class="syn-str">'Expo'</span>,
+    <span class="syn-str">'Next.js'</span>, <span class="syn-str">'TypeScript'</span>,
+    <span class="syn-str">'Supabase'</span>, <span class="syn-str">'PostgreSQL / PostGIS'</span>
+  ],
+  <span class="syn-prop">capstone</span>: <span class="syn-str">'Miniway Transit System'</span>,
+  <span class="syn-prop">status</span>: <span class="syn-str">'Ready to contribute & grow'</span>
+};</code></pre>
+                        </div>
+                        <div class="terminal-footer">
+                            <div class="terminal-feature">
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Real-time Data Sync & Telemetry</span>
+                            </div>
+                            <div class="terminal-feature">
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Mobile & Cross-Platform Android</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Summary & About Section -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">01 // PROFILE</span>
+                    <h2 class="section-title">Professional Summary & Focus</h2>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-card-formal">
+                        <div class="formal-portrait-wrap">
+                            <img src="images/me-coat.png" alt="Arvin Joy M. Pangalo" class="formal-portrait">
+                            <div class="portrait-caption">
+                                <strong>Arvin Joy M. Pangalo</strong>
+                                <span>BSIT Candidate • Full-Stack Developer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-details">
+                        <div class="content-card highlight-card">
+                            <h3 class="card-heading"><i class="fas fa-user-check"></i> Career Objective</h3>
+                            <p class="summary-text">
+                                BSIT graduate-level candidate with hands-on experience in software and system
+                                development, mobile and web application development, database and cloud services, and
+                                real-time data synchronization. Experienced with <strong>JavaScript, TypeScript, Java,
+                                    React Native, Expo, React/Next.js, Laravel/PHP, and Supabase</strong>.
+                            </p>
+                            <p class="summary-text">
+                                Seeking an entry-level <strong>Junior Developer or Software Developer</strong> role
+                                where I can contribute to high-impact application development while continuing to
+                                strengthen my technical and professional skills.
+                            </p>
+                        </div>
+
+                        <div class="about-pillars-grid">
+                            <div class="pillar-card">
+                                <div class="pillar-icon"><i class="fas fa-code-branch"></i></div>
+                                <h4>End-to-End Development</h4>
+                                <p>Architecting cohesive solutions from database modeling and API integrations to sleek
+                                    user interfaces.</p>
+                            </div>
+                            <div class="pillar-card">
+                                <div class="pillar-icon"><i class="fas fa-bolt"></i></div>
+                                <h4>Real-Time & Geospatial</h4>
+                                <p>Experience implementing Mapbox GIS telemetry, live sync via Supabase, and digital QR
+                                    ticketing.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practicum Experience Section -->
+        <section id="experience" class="section experience-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">02 // PRACTICUM EXPERIENCE</span>
+                    <h2 class="section-title">Work & Hands-on Training</h2>
+                    <p class="section-subtitle">Real-world institutional experience supporting technology operations and
+                        administrative systems.</p>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="exp-role-group">
+                            <div class="exp-icon"><i class="fas fa-building-columns"></i></div>
+                            <div>
+                                <h3 class="exp-role">Practicum / OJT Trainee</h3>
+                                <span class="exp-company">TESDA Davao del Sur Provincial Office</span>
+                            </div>
+                        </div>
+                        <div class="exp-location-group">
+                            <span class="exp-period"><i class="far fa-calendar-alt"></i> Practicum Period</span>
+                            <span class="exp-place"><i class="fas fa-map-pin"></i> Davao del Sur, Philippines</span>
+                        </div>
+                    </div>
+
+                    <div class="experience-body">
+                        <h4 class="exp-section-title">Key Responsibilities & Contributions:</h4>
+                        <ul class="exp-bullet-list">
+                            <li>
+                                <i class="fas fa-check"></i>
+                                <span>Provided technical and administrative support in a government office
+                                    environment.</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check"></i>
+                                <span>Assisted with documentation, data processing, office tasks, and day-to-day
+                                    technical activities.</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check"></i>
+                                <span>Applied classroom knowledge in information technology while developing
+                                    professionalism, communication, teamwork, and workplace discipline.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Selected Projects Section -->
+        <section id="projects" class="section projects-section">
+            <div class="container">
+                <div class="section-header-row">
+                    <div>
+                        <span class="section-tag">03 // SELECTED PROJECT</span>
+                        <h2 class="section-title">Capstone & Applied Engineering</h2>
+                    </div>
+                    <p class="section-subtitle-aside">
+                        Comprehensive real-time public transit system built as an Academic Capstone Project.
+                    </p>
+                </div>
+
+                <div class="projects-container">
+                    <!-- Project 1: Miniway Mobile System -->
+                    <article class="project-showcase-card">
+                        <div class="project-media-col">
+                            <div class="project-logo-frame">
+                                <img src="images/miniway/logo.png" alt="Miniway Transit System"
+                                    class="miniway-logo-img">
+                            </div>
+                            <div class="project-media-badge">
+                                <i class="fas fa-mobile-screen"></i> Mobile Capstone Project
+                            </div>
+                        </div>
+
+                        <div class="project-info-col">
+                            <div class="project-badge-row">
+                                <span class="pill-badge primary">Academic Capstone Project</span>
+                                <span class="pill-badge neutral">Cross-Platform Android</span>
+                            </div>
+
+                            <h3 class="project-heading">Miniway — Real-Time Public Transport System</h3>
+
+                            <p class="project-lead">
+                                Developed a real-time public transport system designed to help commuters monitor minibus
+                                locations, estimated arrival times (ETA), seat availability, fares, and pickup requests.
+                            </p>
+
+                            <div class="project-bullets">
+                                <div class="bullet-item">
+                                    <i class="fas fa-circle-check"></i>
+                                    <span>Implemented mobile application features using <strong>React Native</strong>
+                                        and <strong>Expo</strong>, with <strong>Supabase</strong> for authentication,
+                                        database services, and real-time synchronization.</span>
+                                </div>
+                                <div class="bullet-item">
+                                    <i class="fas fa-circle-check"></i>
+                                    <span>Integrated <strong>Mapbox services</strong> and geospatial data concepts for
+                                        route mapping, location tracking, and ETA-related functionality.</span>
+                                </div>
+                                <div class="bullet-item">
+                                    <i class="fas fa-circle-check"></i>
+                                    <span>Included <strong>QR-based digital ticket generation and scanning</strong> as
+                                        part of the passenger management workflow.</span>
+                                </div>
+                            </div>
+
+                            <div class="tech-pills-wrap">
+                                <span class="tech-tag"><i class="fab fa-react"></i> React Native</span>
+                                <span class="tech-tag"><i class="fas fa-mobile"></i> Expo</span>
+                                <span class="tech-tag"><i class="fas fa-bolt"></i> Supabase</span>
+                                <span class="tech-tag"><i class="fas fa-map"></i> Mapbox APIs</span>
+                                <span class="tech-tag"><i class="fas fa-database"></i> PostgreSQL / PostGIS</span>
+                                <span class="tech-tag"><i class="fas fa-qrcode"></i> QR Ticketing</span>
+                            </div>
+
+                            <div class="project-cta-group">
+                                <button class="btn btn-primary gallery-trigger" data-gallery="miniway">
+                                    <i class="fas fa-images"></i>
+                                    <span>View Mobile App Screenshots</span>
+                                </button>
+                                <a href="https://github.com/aj-tech-24/miniway2.0" target="_blank" rel="noopener"
+                                    class="btn btn-outline">
+                                    <i class="fab fa-github"></i>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2: Miniway Admin Dashboard -->
+                    <article class="project-showcase-card">
+                        <div class="project-media-col">
+                            <div class="project-dashboard-frame">
+                                <img src="images/miniway/admindashboard.png" alt="Miniway Admin Dashboard"
+                                    class="dashboard-img">
+                            </div>
+                            <div class="project-media-badge">
+                                <i class="fas fa-chart-line"></i> Web Management Platform
+                            </div>
+                        </div>
+
+                        <div class="project-info-col">
+                            <div class="project-badge-row">
+                                <span class="pill-badge secondary">Operations Console</span>
+                                <span class="pill-badge neutral">Web Application</span>
+                            </div>
+
+                            <h3 class="project-heading">Miniway — Operations & Fleet Analytics Dashboard</h3>
+
+                            <p class="project-lead">
+                                An administrative dispatch and monitoring dashboard providing transport operators with
+                                real-time fleet oversight, fare reconciliation, active driver tracking, and route
+                                performance analytics.
+                            </p>
+
+                            <div class="project-bullets">
+                                <div class="bullet-item">
+                                    <i class="fas fa-circle-check"></i>
+                                    <span>Engineered with <strong>React / Next.js</strong>, <strong>Tailwind
+                                            CSS</strong>, and <strong>Supabase</strong> real-time feeds.</span>
+                                </div>
+                                <div class="bullet-item">
+                                    <i class="fas fa-circle-check"></i>
+                                    <span>Interactive ridership analytics and revenue auditing dashboards powered by
+                                        Chart.js.</span>
+                                </div>
+                                <div class="bullet-item">
+                                    <i class="fas fa-circle-check"></i>
+                                    <span>Dynamic route waypoint topology editor and operator dispatch tools.</span>
+                                </div>
+                            </div>
+
+                            <div class="tech-pills-wrap">
+                                <span class="tech-tag"><i class="fab fa-react"></i> Next.js / React</span>
+                                <span class="tech-tag"><i class="fas fa-database"></i> Supabase</span>
+                                <span class="tech-tag"><i class="fas fa-chart-pie"></i> Chart.js</span>
+                                <span class="tech-tag"><i class="fab fa-css3-alt"></i> Tailwind CSS</span>
+                            </div>
+
+                            <div class="project-cta-group">
+                                <button class="btn btn-primary admin-gallery-trigger" data-gallery="admin">
+                                    <i class="fas fa-images"></i>
+                                    <span>View Dashboard Views</span>
+                                </button>
+                                <a href="https://github.com/aj-tech-24/admin-dashboard" target="_blank" rel="noopener"
+                                    class="btn btn-outline">
+                                    <i class="fab fa-github"></i>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skills Section (Strict Resume Alignment) -->
+        <section id="skills" class="section skills-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">04 // TECHNICAL SKILLS</span>
+                    <h2 class="section-title">Skills & Technologies</h2>
+                    <p class="section-subtitle">Structured toolkit mapped directly from practical project
+                        implementations and academic coursework.</p>
+                </div>
+
+                <div class="skills-grid">
+                    <!-- Programming Languages -->
+                    <div class="skill-group-card">
+                        <div class="group-header">
+                            <div class="group-icon"><i class="fas fa-code"></i></div>
+                            <h3 class="group-title">Programming Languages</h3>
+                        </div>
+                        <div class="skill-item-list">
+                            <div class="skill-pill"><i class="fab fa-js text-yellow"></i> <span>JavaScript</span></div>
+                            <div class="skill-pill"><i class="fab fa-js text-blue"></i> <span>TypeScript</span></div>
+                            <div class="skill-pill"><i class="fab fa-java text-orange"></i> <span>Java</span></div>
+                            <div class="skill-pill"><i class="fab fa-php text-indigo"></i> <span>PHP</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Web Development -->
+                    <div class="skill-group-card">
+                        <div class="group-header">
+                            <div class="group-icon"><i class="fas fa-globe"></i></div>
+                            <h3 class="group-title">Web Development</h3>
+                        </div>
+                        <div class="skill-item-list">
+                            <div class="skill-pill"><i class="fab fa-react text-cyan"></i> <span>React</span></div>
+                            <div class="skill-pill"><i class="fas fa-layer-group text-dark"></i> <span>Next.js</span>
+                            </div>
+                            <div class="skill-pill"><i class="fab fa-laravel text-red"></i> <span>Laravel</span></div>
+                            <div class="skill-pill"><i class="fab fa-php text-indigo"></i> <span>PHP</span></div>
+                            <div class="skill-pill"><i class="fab fa-html5 text-orange"></i> <span>HTML5 / CSS3</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Development -->
+                    <div class="skill-group-card">
+                        <div class="group-header">
+                            <div class="group-icon"><i class="fas fa-mobile-screen-button"></i></div>
+                            <h3 class="group-title">Mobile Development</h3>
+                        </div>
+                        <div class="skill-item-list">
+                            <div class="skill-pill"><i class="fab fa-react text-cyan"></i> <span>React Native</span>
+                            </div>
+                            <div class="skill-pill"><i class="fas fa-cube text-dark"></i> <span>Expo</span></div>
+                            <div class="skill-pill"><i class="fab fa-android text-green"></i> <span>Cross-platform
+                                    Android</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Backend & Cloud -->
+                    <div class="skill-group-card">
+                        <div class="group-header">
+                            <div class="group-icon"><i class="fas fa-cloud"></i></div>
+                            <h3 class="group-title">Backend & Cloud</h3>
+                        </div>
+                        <div class="skill-item-list">
+                            <div class="skill-pill"><i class="fas fa-bolt text-emerald"></i> <span>Supabase</span></div>
+                            <div class="skill-pill"><i class="fas fa-user-shield text-blue"></i> <span>Authentication &
+                                    RLS</span></div>
+                            <div class="skill-pill"><i class="fas fa-database text-purple"></i> <span>Database
+                                    Management</span></div>
+                            <div class="skill-pill"><i class="fas fa-arrows-rotate text-cyan"></i> <span>Real-time Data
+                                    Sync</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Database & GIS -->
+                    <div class="skill-group-card">
+                        <div class="group-header">
+                            <div class="group-icon"><i class="fas fa-database"></i></div>
+                            <h3 class="group-title">Database & GIS</h3>
+                        </div>
+                        <div class="skill-item-list">
+                            <div class="skill-pill"><i class="fas fa-database text-blue"></i> <span>PostgreSQL</span>
+                            </div>
+                            <div class="skill-pill"><i class="fas fa-map-location-dot text-emerald"></i>
+                                <span>PostGIS</span></div>
+                            <div class="skill-pill"><i class="fas fa-server text-orange"></i> <span>MySQL</span></div>
+                        </div>
+                    </div>
+
+                    <!-- APIs & Tools -->
+                    <div class="skill-group-card">
+                        <div class="group-header">
+                            <div class="group-icon"><i class="fas fa-screwdriver-wrench"></i></div>
+                            <h3 class="group-title">APIs & Tools</h3>
+                        </div>
+                        <div class="skill-item-list">
+                            <div class="skill-pill"><i class="fas fa-map-pin text-cyan"></i> <span>Mapbox APIs</span>
+                            </div>
+                            <div class="skill-pill"><i class="fab fa-github text-dark"></i> <span>Git / GitHub</span>
+                            </div>
+                            <div class="skill-pill"><i class="fas fa-network-wired text-purple"></i> <span>REST
+                                    APIs</span></div>
+                            <div class="skill-pill"><i class="fas fa-laptop-code text-blue"></i> <span>VS Code</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Credentials Section -->
+        <section id="education" class="section education-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">05 // EDUCATION & CREDENTIALS</span>
+                    <h2 class="section-title">Academic Background & Seminars</h2>
+                </div>
+
+                <div class="education-grid">
+                    <!-- Academic Milestones -->
+                    <div class="education-col">
+                        <h3 class="col-heading"><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <div class="timeline-stack">
+                            <!-- College -->
+                            <div class="timeline-card">
+                                <div class="time-badge">2022 — 2026</div>
+                                <h4 class="time-title">Bachelor of Science in Information Technology</h4>
+                                <span class="time-school">Cor Jesu College</span>
+                                <span class="time-location"><i class="fas fa-map-pin"></i> Digos City, Davao del
+                                    Sur</span>
+                                <p class="time-desc">Focus on software development, mobile systems, cloud persistence,
+                                    database administration, and geospatial systems.</p>
+                            </div>
+
+                            <!-- Senior High -->
+                            <div class="timeline-card">
+                                <div class="time-badge">2018 — 2020</div>
+                                <h4 class="time-title">Senior High School</h4>
+                                <span class="time-school">Mary Mediatrix of All Graces Academy</span>
+                                <span class="time-location"><i class="fas fa-map-pin"></i> Digos City, Davao del
+                                    Sur</span>
+                                <p class="time-desc">Tech-Voc ICT Strand. Built strong foundation in computer systems,
+                                    programming basics, and networking.</p>
+                            </div>
+
+                            <!-- Junior High -->
+                            <div class="timeline-card">
+                                <div class="time-badge">2014 — 2018</div>
+                                <h4 class="time-title">Secondary Education</h4>
+                                <span class="time-school">Digos City National High School</span>
+                                <span class="time-location"><i class="fas fa-map-pin"></i> Digos City, Davao del
+                                    Sur</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Training, Seminars & Certifications -->
+                    <div class="seminars-col">
+                        <h3 class="col-heading"><i class="fas fa-certificate"></i> Training, Seminars & Certifications
+                        </h3>
+                        <div class="seminars-list">
+                            <!-- Resume Seminar 1 -->
+                            <div class="seminar-card">
+                                <div class="sem-icon"><i class="fas fa-headset"></i></div>
+                                <div class="sem-info">
+                                    <h4 class="sem-title">DavSur Virtual Assistant Workshop</h4>
+                                    <span class="sem-date"><i class="far fa-calendar-alt"></i> September 27, 2025</span>
+                                </div>
+                            </div>
+
+                            <!-- Resume Seminar 2 -->
+                            <div class="seminar-card cert-clickable" data-cert="images/softwaredev.jpg"
+                                data-title="Software Development & Design Thinking" data-issuer="DICT Region XI"
+                                data-date="July 11, 2025">
+                                <div class="sem-icon"><i class="fas fa-laptop-code"></i></div>
+                                <div class="sem-info">
+                                    <h4 class="sem-title">Software Development and Design Thinking</h4>
+                                    <span class="sem-issuer">DICT Region XI</span>
+                                    <span class="sem-date"><i class="far fa-calendar-alt"></i> July 11, 2025</span>
+                                </div>
+                                <span class="view-cert-tag"><i class="fas fa-expand"></i> View</span>
+                            </div>
+
+                            <!-- Additional Verified Credentials -->
+                            <div class="seminar-card cert-clickable" data-cert="images/introcyber.jpg"
+                                data-title="Introduction to Cybersecurity" data-issuer="Cisco Networking Academy"
+                                data-date="November 2025">
+                                <div class="sem-icon"><i class="fas fa-shield-halved"></i></div>
+                                <div class="sem-info">
+                                    <h4 class="sem-title">Introduction to Cybersecurity</h4>
+                                    <span class="sem-issuer">Cisco Networking Academy</span>
+                                    <span class="sem-date"><i class="far fa-calendar-alt"></i> November 2025</span>
+                                </div>
+                                <span class="view-cert-tag"><i class="fas fa-expand"></i> View</span>
+                            </div>
+
+                            <div class="seminar-card cert-clickable" data-cert="images/udemy.jpg"
+                                data-title="HTML, CSS, JavaScript, React" data-issuer="Udemy — YouAccel Training"
+                                data-date="November 2024">
+                                <div class="sem-icon"><i class="fab fa-react"></i></div>
+                                <div class="sem-info">
+                                    <h4 class="sem-title">HTML, CSS, JavaScript, React Masterclass</h4>
+                                    <span class="sem-issuer">Udemy — YouAccel Training</span>
+                                    <span class="sem-date"><i class="far fa-calendar-alt"></i> November 2024</span>
+                                </div>
+                                <span class="view-cert-tag"><i class="fas fa-expand"></i> View</span>
+                            </div>
+
+                            <div class="seminar-card cert-clickable" data-cert="images/vibecode.jpg"
+                                data-title="OpenxAI Vibe Coding Session" data-issuer="OpenxAI & Davao DeFi Community"
+                                data-date="September 2025">
+                                <div class="sem-icon"><i class="fas fa-brain"></i></div>
+                                <div class="sem-info">
+                                    <h4 class="sem-title">OpenxAI Vibe Coding Session</h4>
+                                    <span class="sem-issuer">OpenxAI & Davao DeFi Community</span>
+                                    <span class="sem-date"><i class="far fa-calendar-alt"></i> September 2025</span>
+                                </div>
+                                <span class="view-cert-tag"><i class="fas fa-expand"></i> View</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic References Section -->
+        <section class="section references-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">06 // VERIFICATION</span>
+                    <h2 class="section-title">Academic & Professional References</h2>
+                    <p class="section-subtitle">Faculty and coordinators from Cor Jesu College, Inc. available for
+                        reference.</p>
+                </div>
+
+                <div class="references-grid">
+                    <div class="reference-card">
+                        <div class="ref-icon"><i class="fas fa-user-tie"></i></div>
+                        <h4 class="ref-name">Daryl Ivan E. Hisola</h4>
+                        <span class="ref-role">BSIT Practicum Coordinator</span>
+                        <span class="ref-inst">Cor Jesu College, Inc.</span>
+                        <a href="mailto:darylhisola@g.cjc.edu.ph" class="ref-email"><i class="fas fa-envelope"></i>
+                            darylhisola@g.cjc.edu.ph</a>
+                    </div>
+
+                    <div class="reference-card">
+                        <div class="ref-icon"><i class="fas fa-user-graduate"></i></div>
+                        <h4 class="ref-name">Benjie A. Pabroa</h4>
+                        <span class="ref-role">BSIT Program Head</span>
+                        <span class="ref-inst">Cor Jesu College, Inc.</span>
+                        <a href="mailto:benjiepabroa@g.cjc.edu.ph" class="ref-email"><i class="fas fa-envelope"></i>
+                            benjiepabroa@g.cjc.edu.ph</a>
+                    </div>
+
+                    <div class="reference-card">
+                        <div class="ref-icon"><i class="fas fa-chalkboard-user"></i></div>
+                        <h4 class="ref-name">Ceimavil S. Alcain</h4>
+                        <span class="ref-role">CCIS Faculty</span>
+                        <span class="ref-inst">Cor Jesu College, Inc.</span>
+                        <span class="ref-note">Contact via Cor Jesu College CCIS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">07 // CONTACT</span>
+                    <h2 class="section-title">Let's Connect & Build Together</h2>
+                    <p class="section-subtitle">I'm actively seeking Junior / Software Developer opportunities. Reach
+                        out anytime.</p>
+                </div>
+
+                <div class="contact-box">
+                    <div class="contact-sidebar">
+                        <div class="sidebar-header">
+                            <span class="status-indicator-inline"></span>
+                            <h3>Direct Contacts</h3>
+                        </div>
+
+                        <div class="contact-links-list">
+                            <div class="contact-link-item">
+                                <div class="cli-icon"><i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <span class="cli-label">Email Address</span>
+                                    <a href="mailto:arvinjoypangalo@gmail.com"
+                                        class="cli-val">arvinjoypangalo@gmail.com</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-link-item">
+                                <div class="cli-icon"><i class="fas fa-phone"></i></div>
+                                <div>
+                                    <span class="cli-label">Phone / Mobile</span>
+                                    <a href="tel:+639604764203" class="cli-val">+63 (960) 476-4203</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-link-item">
+                                <div class="cli-icon"><i class="fas fa-location-dot"></i></div>
+                                <div>
+                                    <span class="cli-label">Location</span>
+                                    <span class="cli-val">Digos City, Davao del Sur, Philippines</span>
+                                </div>
+                            </div>
+
+                            <div class="contact-link-item">
+                                <div class="cli-icon"><i class="fab fa-github"></i></div>
+                                <div>
+                                    <span class="cli-label">GitHub Repository</span>
+                                    <a href="https://github.com/aj-tech-24" target="_blank" rel="noopener"
+                                        class="cli-val">github.com/aj-tech-24</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-main-form">
+                        <form id="contactForm" class="contact-form-el" novalidate>
+                            <div class="form-grid-2">
+                                <div class="input-wrap">
+                                    <label for="name" class="input-label">Your Name</label>
+                                    <input type="text" id="name" name="name" class="input-field"
+                                        placeholder="e.g. John Smith" required>
+                                </div>
+                                <div class="input-wrap">
+                                    <label for="email" class="input-label">Your Email</label>
+                                    <input type="email" id="email" name="email" class="input-field"
+                                        placeholder="john@example.com" required>
+                                </div>
+                            </div>
+
+                            <div class="input-wrap">
+                                <label for="subject" class="input-label">Subject</label>
+                                <input type="text" id="subject" name="subject" class="input-field"
+                                    placeholder="Job Opportunity / Project Inquiry" required>
+                            </div>
+
+                            <div class="input-wrap">
+                                <label for="message" class="input-label">Message</label>
+                                <textarea id="message" name="message" rows="5" class="input-textarea"
+                                    placeholder="Hello Arvin, we would like to discuss..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+                                <span>Send Direct Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Minimalist Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <span class="logo-text">AJP</span>
-                    <p>BSIT Student Portfolio</p>
-                </div>
-                <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                </div>
+        <div class="container footer-content">
+            <div class="footer-left">
+                <strong>Arvin Joy M. Pangalo</strong>
+                <span>BSIT Candidate • Cor Jesu College (2022–2026)</span>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Arvin Joy Pangalo. All rights reserved. | Crafted with <i class="fas fa-heart"></i></p>
+            <div class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
             </div>
+            <button class="btn-top" id="backToTop" aria-label="Back to top">
+                <i class="fas fa-arrow-up"></i>
+            </button>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    <!-- Universal Project Gallery Lightbox Modal -->
+    <div class="gallery-modal" id="galleryModal" role="dialog" aria-modal="true" aria-label="Project Visual Gallery">
+        <div class="gallery-modal-overlay" id="galleryModalOverlay"></div>
+        <div class="gallery-modal-dialog">
+            <div class="gallery-modal-header">
+                <div class="gallery-meta">
+                    <span class="gallery-tag" id="galleryCategory">Project Showcase</span>
+                    <h3 class="gallery-title" id="galleryTitle">Miniway Transit System</h3>
+                </div>
+                <div class="gallery-header-actions">
+                    <a href="#" target="_blank" rel="noopener" class="btn btn-sm btn-outline" id="galleryGitLink">
+                        <i class="fab fa-github"></i> <span>GitHub</span>
+                    </a>
+                    <button class="gallery-close-btn" id="galleryCloseBtn" aria-label="Close modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
 
-    <!-- Certificate Modal -->
-    <div class="cert-modal" id="certModal">
-        <div class="cert-modal-content">
-            <button class="cert-modal-close" id="certModalClose" aria-label="Close modal">
-                <i class="fas fa-times"></i>
-            </button>
-            <img src="" alt="Certificate" id="certModalImage">
-            <div class="cert-modal-actions">
-                <a href="" download class="btn btn-primary" id="certDownload">
+            <div class="gallery-stage">
+                <button class="gallery-nav-btn prev" id="galleryPrevBtn" aria-label="Previous image">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="gallery-display">
+                    <img src="" alt="Project screenshot preview" id="galleryMainImg" class="gallery-main-image">
+                    <div class="gallery-caption" id="galleryCaption"></div>
+                </div>
+                <button class="gallery-nav-btn next" id="galleryNextBtn" aria-label="Next image">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="gallery-bottom-bar">
+                <div class="gallery-counter">
+                    <span id="galleryCurrentIdx">1</span> / <span id="galleryTotalIdx">3</span>
+                </div>
+                <div class="gallery-thumbnails" id="galleryThumbsContainer">
+                    <!-- Dynamic thumbnails inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Inspection Modal -->
+    <div class="cert-modal" id="certModal" role="dialog" aria-modal="true" aria-label="Certificate Inspector">
+        <div class="cert-modal-backdrop" id="certModalBackdrop"></div>
+        <div class="cert-dialog">
+            <div class="cert-dialog-header">
+                <div>
+                    <h3 id="certModalTitle" class="cert-modal-name">Certificate Preview</h3>
+                    <p id="certModalSubtitle" class="cert-modal-issuer">Issuer Name</p>
+                </div>
+                <button class="cert-modal-close" id="certModalClose" aria-label="Close certificate inspector">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cert-image-stage">
+                <img src="" alt="Verified Certificate" id="certModalImage">
+            </div>
+            <div class="cert-dialog-footer">
+                <a href="" download class="btn btn-primary btn-sm" id="certDownload">
                     <i class="fas fa-download"></i>
-                    <span>Download</span>
+                    <span>Download Certificate</span>
                 </a>
             </div>
         </div>
     </div>
 
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <!-- Script Files -->
     <script src="js/config.js"></script>
     <script src="js/script.js"></script>
 </body>
+
 </html>

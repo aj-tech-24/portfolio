@@ -1,677 +1,388 @@
-// ===== DOM ELEMENTS =====
-const preloader = document.querySelector('.preloader');
-const navbar = document.querySelector('.navbar');
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-const navLinksItems = document.querySelectorAll('.nav-links a');
-const backToTop = document.getElementById('backToTop');
-const skillProgress = document.querySelectorAll('.skill-progress');
-const filterBtns = document.querySelectorAll('.filter-btn');
-const projectCards = document.querySelectorAll('.project-card');
-const contactForm = document.getElementById('contactForm');
+/**
+ * ARVIN JOY M. PANGALO — PORTFOLIO ENGINE (LIGHT THEME)
+ * Navigation Spy, Multi-Image Lightbox, Certificate Inspector & Contact Form Logic
+ */
 
-// Certificate Modal Elements
-const certModal = document.getElementById('certModal');
-const certModalImage = document.getElementById('certModalImage');
-const certModalClose = document.getElementById('certModalClose');
-const certDownload = document.getElementById('certDownload');
-const certCards = document.querySelectorAll('.cert-card');
-
-// ===== PRELOADER =====
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        preloader.classList.add('hidden');
-    }, 500);
-});
-
-// ===== NAVBAR SCROLL EFFECT =====
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-
-    // Back to top button visibility
-    if (window.scrollY > 500) {
-        backToTop.classList.add('visible');
-    } else {
-        backToTop.classList.remove('visible');
-    }
-
-    // Update active nav link
-    updateActiveNavLink();
-
-    // Animate skill bars on scroll
-    animateSkillBars();
-});
-
-// ===== MOBILE NAVIGATION =====
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
-    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-});
-
-navLinksItems.forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
-        document.body.style.overflow = '';
-    });
-});
-
-// ===== ACTIVE NAV LINK UPDATE =====
-function updateActiveNavLink() {
+document.addEventListener('DOMContentLoaded', () => {
+    // ===== 1. FLOATING NAVIGATION & ACTIVE SCROLL SPY =====
+    const header = document.querySelector('.header');
+    const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section[id]');
-    const scrollPos = window.scrollY + 100;
+    const navToggle = document.getElementById('navToggle');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerClose = document.getElementById('drawerClose');
+    const drawerLinks = document.querySelectorAll('.drawer-link');
+    const backToTop = document.getElementById('backToTop');
 
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-
-        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            navLinksItems.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-    });
-}
-
-// ===== BACK TO TOP =====
-backToTop.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-// ===== CERTIFICATE MODAL =====
-certCards.forEach(card => {
-    card.addEventListener('click', () => {
-        const certSrc = card.getAttribute('data-cert');
-        if (certSrc) {
-            certModalImage.src = certSrc;
-            certDownload.href = certSrc;
-            certModal.classList.add('active');
+    // Mobile Drawer Handlers
+    const toggleDrawer = (open) => {
+        if (open) {
+            mobileDrawer.classList.add('active');
             document.body.style.overflow = 'hidden';
+        } else {
+            mobileDrawer.classList.remove('active');
+            document.body.style.overflow = '';
         }
-    });
-});
+    };
 
-// Close modal on close button click
-certModalClose.addEventListener('click', () => {
-    certModal.classList.remove('active');
-    document.body.style.overflow = '';
-});
+    if (navToggle) navToggle.addEventListener('click', () => toggleDrawer(true));
+    if (drawerClose) drawerClose.addEventListener('click', () => toggleDrawer(false));
+    drawerLinks.forEach(link => link.addEventListener('click', () => toggleDrawer(false)));
 
-// Close modal on outside click
-certModal.addEventListener('click', (e) => {
-    if (e.target === certModal) {
-        certModal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-});
+    // Scroll Handler
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
 
-// Close modal on Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && certModal.classList.contains('active')) {
-        certModal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-});
-
-// ===== TYPING ANIMATION =====
-const dynamicText = document.querySelector('.dynamic-text');
-const words = ['Web Developer', 'UI/UX Designer', 'Student', 'Tech Enthusiast', 'Problem Solver'];
-let wordIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-let typeSpeed = 100;
-
-function typeEffect() {
-    const currentWord = words[wordIndex];
-    
-    if (isDeleting) {
-        dynamicText.textContent = currentWord.substring(0, charIndex - 1);
-        charIndex--;
-        typeSpeed = 50;
-    } else {
-        dynamicText.textContent = currentWord.substring(0, charIndex + 1);
-        charIndex++;
-        typeSpeed = 100;
-    }
-
-    if (!isDeleting && charIndex === currentWord.length) {
-        isDeleting = true;
-        typeSpeed = 2000; // Pause at end
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
-        typeSpeed = 500; // Pause before new word
-    }
-
-    setTimeout(typeEffect, typeSpeed);
-}
-
-// Start typing animation
-typeEffect();
-
-// ===== SKILL BARS ANIMATION =====
-function animateSkillBars() {
-    skillProgress.forEach(bar => {
-        const rect = bar.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        
-        if (rect.top < windowHeight - 50) {
-            const progress = bar.getAttribute('data-progress');
-            bar.style.width = `${progress}%`;
-        }
-    });
-}
-
-// ===== PROJECT FILTER =====
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // Update active button
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const filter = btn.getAttribute('data-filter');
-
-        projectCards.forEach(card => {
-            const category = card.getAttribute('data-category');
-            
-            if (filter === 'all' || filter === category) {
-                card.style.display = 'block';
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'scale(1)';
-                }, 10);
+        // Back to top visibility
+        if (backToTop) {
+            if (scrollY > 350) {
+                backToTop.style.opacity = '1';
+                backToTop.style.pointerEvents = 'auto';
             } else {
-                card.style.opacity = '0';
-                card.style.transform = 'scale(0.8)';
-                setTimeout(() => {
-                    card.style.display = 'none';
-                }, 300);
+                backToTop.style.opacity = '0';
+                backToTop.style.pointerEvents = 'none';
+            }
+        }
+
+        // Active section spy
+        const scrollPosition = scrollY + 180;
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
             }
         });
     });
-});
 
-// ===== EMAILJS CONFIGURATION =====
-// TODO: Replace these with your actual EmailJS credentials
-const EMAILJS_PUBLIC_KEY = 'Yy08UM0-RcHe1IsqJ';  // Get from EmailJS Dashboard > Account > API Keys
-const EMAILJS_SERVICE_ID = 'service_7kihxpu';  // Get from EmailJS Dashboard > Email Services
-const EMAILJS_TEMPLATE_ID = 'template_u2j1r6l'; // Get from EmailJS Dashboard > Email Templates
-
-// Initialize EmailJS
-(function() {
-    if (typeof emailjs !== 'undefined') {
-        emailjs.init(EMAILJS_PUBLIC_KEY);
-    }
-})();
-
-// ===== CONTACT FORM =====
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    // Get form data
-    const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData);
-
-    // Simple validation
-    if (!data.name || !data.email || !data.subject || !data.message) {
-        showNotification('Please fill in all fields', 'error');
-        return;
+    if (backToTop) {
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
-        showNotification('Please enter a valid email address', 'error');
-        return;
+    // ===== 2. ONE-CLICK EMAIL COPY WITH TOAST =====
+    const copyEmailBtn = document.getElementById('copyEmailBtn');
+    const copyEmailText = document.getElementById('copyEmailText');
+
+    if (copyEmailBtn) {
+        copyEmailBtn.addEventListener('click', async () => {
+            const email = copyEmailBtn.getAttribute('data-email') || 'arvinjoypangalo@gmail.com';
+            try {
+                await navigator.clipboard.writeText(email);
+                showToast('Email address copied to clipboard!', 'success');
+                if (copyEmailText) {
+                    const original = copyEmailText.textContent;
+                    copyEmailText.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyEmailText.textContent = original;
+                    }, 2000);
+                }
+            } catch (err) {
+                showToast('Failed to copy: ' + email, 'error');
+            }
+        });
     }
 
-    // Show loading state
-    const submitBtn = contactForm.querySelector('.btn-submit');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    submitBtn.disabled = true;
-
-    // Send email using EmailJS
-    const templateParams = {
-        from_name: data.name,
-        from_email: data.email,
-        subject: data.subject,
-        message: data.message,
-        to_name: 'Arvin Joy Pangalo' // Your name
+    // ===== 3. UNIVERSAL GALLERY LIGHTBOX =====
+    const galleryData = {
+        miniway: {
+            title: 'Miniway — Public Transit Tracking & Ticketing App',
+            category: 'Academic Capstone Project',
+            github: 'https://github.com/aj-tech-24/miniway2.0',
+            items: [
+                {
+                    src: 'images/miniway/1.jpeg',
+                    caption: 'Real-time GPS bus location tracking & arrival estimates (ETA) for commuters'
+                },
+                {
+                    src: 'images/miniway/2.jpeg',
+                    caption: 'Digital ticketing interface & QR code transit passes'
+                },
+                {
+                    src: 'images/miniway/3.jpeg',
+                    caption: 'Driver console with seat availability, fares, and passenger count telemetry'
+                }
+            ]
+        },
+        admin: {
+            title: 'Miniway Operations & Fleet Management Dashboard',
+            category: 'Web Platform',
+            github: 'https://github.com/aj-tech-24/admin-dashboard',
+            items: [
+                {
+                    src: 'images/miniway/admindashboard.png',
+                    caption: 'Executive Operations Overview: Active Fleet, Revenue & Alert Feeds'
+                },
+                {
+                    src: 'images/miniway/analytics.png',
+                    caption: 'Ridership Trends, Passenger Heatmaps & Route Efficiency Analytics'
+                },
+                {
+                    src: 'images/miniway/route.png',
+                    caption: 'Interactive Route Topology & Waypoint Management Console'
+                }
+            ]
+        }
     };
 
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-        .then(() => {
-            showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-            contactForm.reset();
-        })
-        .catch((error) => {
-            console.error('EmailJS Error:', error);
-            showNotification('Failed to send message. Please try again or email me directly.', 'error');
-        })
-        .finally(() => {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
+    let activeGallery = null;
+    let activeIndex = 0;
+
+    const galleryModal = document.getElementById('galleryModal');
+    const galleryOverlay = document.getElementById('galleryModalOverlay');
+    const galleryCloseBtn = document.getElementById('galleryCloseBtn');
+    const galleryTitle = document.getElementById('galleryTitle');
+    const galleryCategory = document.getElementById('galleryCategory');
+    const galleryGitLink = document.getElementById('galleryGitLink');
+    const galleryMainImg = document.getElementById('galleryMainImg');
+    const galleryCaption = document.getElementById('galleryCaption');
+    const galleryCurrentIdx = document.getElementById('galleryCurrentIdx');
+    const galleryTotalIdx = document.getElementById('galleryTotalIdx');
+    const galleryPrevBtn = document.getElementById('galleryPrevBtn');
+    const galleryNextBtn = document.getElementById('galleryNextBtn');
+    const galleryThumbsContainer = document.getElementById('galleryThumbsContainer');
+
+    const updateGalleryView = () => {
+        if (!activeGallery) return;
+        const currentItem = activeGallery.items[activeIndex];
+        
+        galleryMainImg.style.opacity = '0';
+        setTimeout(() => {
+            galleryMainImg.src = currentItem.src;
+            galleryCaption.textContent = currentItem.caption;
+            galleryMainImg.style.opacity = '1';
+        }, 120);
+
+        galleryCurrentIdx.textContent = (activeIndex + 1).toString();
+        galleryTotalIdx.textContent = activeGallery.items.length.toString();
+
+        // Update thumbnails
+        const thumbs = galleryThumbsContainer.querySelectorAll('.gallery-thumb');
+        thumbs.forEach((th, idx) => {
+            th.classList.toggle('active', idx === activeIndex);
         });
-});
+    };
 
-// ===== NOTIFICATION =====
-function showNotification(message, type) {
-    // Remove existing notification
-    const existingNotification = document.querySelector('.notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
+    const openGallery = (galleryKey) => {
+        activeGallery = galleryData[galleryKey];
+        if (!activeGallery) return;
+        activeIndex = 0;
 
-    // Create notification
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    notification.innerHTML = `
-        <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
-        <span>${message}</span>
-    `;
+        galleryTitle.textContent = activeGallery.title;
+        galleryCategory.textContent = activeGallery.category;
+        galleryGitLink.href = activeGallery.github;
 
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        padding: 15px 25px;
-        background: ${type === 'success' ? '#10b981' : '#ef4444'};
-        color: white;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 14px;
-        font-weight: 500;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        z-index: 10000;
-        animation: slideIn 0.3s ease;
-    `;
-
-    document.body.appendChild(notification);
-
-    // Remove after 3 seconds
-    setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-    }, 3000);
-}
-
-// Add notification animations
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateX(100px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-    @keyframes slideOut {
-        from {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        to {
-            opacity: 0;
-            transform: translateX(100px);
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+        // Render thumbnails
+        galleryThumbsContainer.innerHTML = '';
+        activeGallery.items.forEach((item, idx) => {
+            const thumb = document.createElement('div');
+            thumb.className = `gallery-thumb ${idx === 0 ? 'active' : ''}`;
+            thumb.innerHTML = `<img src="${item.src}" alt="Thumbnail ${idx + 1}">`;
+            thumb.addEventListener('click', () => {
+                activeIndex = idx;
+                updateGalleryView();
             });
+            galleryThumbsContainer.appendChild(thumb);
+        });
+
+        updateGalleryView();
+        galleryModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeGallery = () => {
+        galleryModal.classList.remove('active');
+        document.body.style.overflow = '';
+        activeGallery = null;
+    };
+
+    const nextImage = () => {
+        if (!activeGallery) return;
+        activeIndex = (activeIndex + 1) % activeGallery.items.length;
+        updateGalleryView();
+    };
+
+    const prevImage = () => {
+        if (!activeGallery) return;
+        activeIndex = (activeIndex - 1 + activeGallery.items.length) % activeGallery.items.length;
+        updateGalleryView();
+    };
+
+    // Attach Gallery Triggers
+    document.querySelectorAll('.gallery-trigger').forEach(btn => {
+        btn.addEventListener('click', () => openGallery('miniway'));
+    });
+
+    document.querySelectorAll('.admin-gallery-trigger').forEach(btn => {
+        btn.addEventListener('click', () => openGallery('admin'));
+    });
+
+    if (galleryCloseBtn) galleryCloseBtn.addEventListener('click', closeGallery);
+    if (galleryOverlay) galleryOverlay.addEventListener('click', closeGallery);
+    if (galleryNextBtn) galleryNextBtn.addEventListener('click', nextImage);
+    if (galleryPrevBtn) galleryPrevBtn.addEventListener('click', prevImage);
+
+    // ===== 4. CERTIFICATE INSPECTION MODAL =====
+    const certModal = document.getElementById('certModal');
+    const certModalBackdrop = document.getElementById('certModalBackdrop');
+    const certModalClose = document.getElementById('certModalClose');
+    const certModalTitle = document.getElementById('certModalTitle');
+    const certModalSubtitle = document.getElementById('certModalSubtitle');
+    const certModalImage = document.getElementById('certModalImage');
+    const certDownload = document.getElementById('certDownload');
+
+    document.querySelectorAll('.cert-clickable').forEach(card => {
+        card.addEventListener('click', () => {
+            const certSrc = card.getAttribute('data-cert');
+            const certTitle = card.getAttribute('data-title') || 'Certificate';
+            const certIssuer = card.getAttribute('data-issuer') || 'Issuer';
+            const certDate = card.getAttribute('data-date') || '';
+
+            if (certSrc) {
+                certModalImage.src = certSrc;
+                certDownload.href = certSrc;
+                certModalTitle.textContent = certTitle;
+                certModalSubtitle.textContent = `${certIssuer} • ${certDate}`;
+                certModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    const closeCertModal = () => {
+        certModal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    if (certModalClose) certModalClose.addEventListener('click', closeCertModal);
+    if (certModalBackdrop) certModalBackdrop.addEventListener('click', closeCertModal);
+
+    // Keyboard Shortcuts
+    document.addEventListener('keydown', (e) => {
+        if (galleryModal.classList.contains('active')) {
+            if (e.key === 'Escape') closeGallery();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        } else if (certModal.classList.contains('active')) {
+            if (e.key === 'Escape') closeCertModal();
         }
     });
-});
 
-// ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+    // ===== 5. CONTACT FORM (EMAILJS) =====
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animated');
-        }
-    });
-}, observerOptions);
+    // EmailJS Configuration — loaded from gitignored js/config.js (or fallback)
+    const EMAILJS_PUBLIC_KEY = window.EMAIL_CONFIG?.PUBLIC_KEY || 'Yy08UM0-RcHe1IsqJ';
+    const EMAILJS_SERVICE_ID = window.EMAIL_CONFIG?.SERVICE_ID || 'service_7kihxpu';
+    const EMAILJS_TEMPLATE_ID = window.EMAIL_CONFIG?.TEMPLATE_ID || 'template_u2j1r6l';
 
-// Observe elements for animation
-document.querySelectorAll('.about-card, .skill-item, .project-card, .timeline-item, .cert-card, .contact-item').forEach(el => {
-    el.classList.add('animate-on-scroll');
-    observer.observe(el);
-});
-
-// ===== PARALLAX EFFECT FOR HERO =====
-window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent && scrolled < window.innerHeight) {
-        heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
-        heroContent.style.opacity = 1 - (scrolled * 0.002);
-    }
-});
-
-// ===== MOUSE TRAIL EFFECT (Optional) =====
-const createParticle = (x, y) => {
-    const particle = document.createElement('div');
-    particle.className = 'mouse-particle';
-    particle.style.cssText = `
-        position: fixed;
-        pointer-events: none;
-        width: 8px;
-        height: 8px;
-        background: linear-gradient(135deg, #6c63ff 0%, #00d9ff 100%);
-        border-radius: 50%;
-        left: ${x}px;
-        top: ${y}px;
-        z-index: 9999;
-        animation: particleFade 0.6s ease forwards;
-    `;
-    document.body.appendChild(particle);
-    setTimeout(() => particle.remove(), 600);
-};
-
-// Add particle animation
-const particleStyle = document.createElement('style');
-particleStyle.textContent = `
-    @keyframes particleFade {
-        0% {
-            opacity: 1;
-            transform: scale(1);
-        }
-        100% {
-            opacity: 0;
-            transform: scale(0);
+    if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY) {
+        try {
+            emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+        } catch (e) {
+            console.warn('EmailJS initialization warning:', e);
         }
     }
-`;
-document.head.appendChild(particleStyle);
 
-// Throttled mouse move for particle effect
-let lastParticleTime = 0;
-document.addEventListener('mousemove', (e) => {
-    const now = Date.now();
-    if (now - lastParticleTime > 50) {
-        createParticle(e.clientX, e.clientY);
-        lastParticleTime = now;
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(contactForm);
+            const name = formData.get('name')?.toString().trim();
+            const email = formData.get('email')?.toString().trim();
+            const subject = formData.get('subject')?.toString().trim();
+            const message = formData.get('message')?.toString().trim();
+
+            if (!name || !email || !subject || !message) {
+                showToast('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showToast('Please provide a valid email address.', 'error');
+                return;
+            }
+
+            const originalBtnHTML = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Sending...</span>';
+
+            // Comprehensive parameter mapping to match any EmailJS template configuration
+            const templateParams = {
+                name: name,
+                from_name: name,
+                user_name: name,
+                email: email,
+                from_email: email,
+                user_email: email,
+                reply_to: email,
+                subject: subject,
+                message: message,
+                to_name: 'Arvin Joy M. Pangalo'
+            };
+
+            try {
+                if (typeof emailjs !== 'undefined') {
+                    const response = await emailjs.send(
+                        EMAILJS_SERVICE_ID,
+                        EMAILJS_TEMPLATE_ID,
+                        templateParams,
+                        { publicKey: EMAILJS_PUBLIC_KEY }
+                    );
+                    console.log('EmailJS response:', response);
+                    showToast('Message sent successfully! I will get back to you promptly.', 'success');
+                    contactForm.reset();
+                } else {
+                    throw new Error('EmailJS SDK is not loaded. Please check your internet connection.');
+                }
+            } catch (error) {
+                console.error('Email submission error:', error);
+                
+                // Construct mailto link as fallback
+                const mailtoUrl = `mailto:arvinjoypangalo@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
+                
+                showToast('Could not reach email service. Opening email client fallback...', 'error');
+                
+                setTimeout(() => {
+                    window.location.href = mailtoUrl;
+                }, 1200);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHTML;
+            }
+        });
+    }
+
+    // ===== 6. TOAST NOTIFICATION SYSTEM =====
+    function showToast(message, type = 'success') {
+        const container = document.getElementById('toastContainer');
+        if (!container) return;
+
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        
+        const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+        toast.innerHTML = `
+            <i class="fas ${icon}"></i>
+            <span>${message}</span>
+        `;
+
+        container.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.animation = 'toastOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+            setTimeout(() => toast.remove(), 300);
+        }, 3500);
     }
 });
-
-// ===== MINIWAY GALLERY =====
-const miniwayModal = document.getElementById('miniway-modal');
-const miniwayGallery = document.getElementById('miniway-gallery');
-const miniwayThumbnails = document.getElementById('miniway-thumbnails');
-const miniwayClose = document.getElementById('miniway-close');
-const galleryPrev = document.getElementById('gallery-prev');
-const galleryNext = document.getElementById('gallery-next');
-const currentImageSpan = document.getElementById('current-image');
-const totalImagesSpan = document.getElementById('total-images');
-const galleryTriggers = document.querySelectorAll('.gallery-trigger');
-
-// Total number of Miniway images (update this to match your actual count)
-const TOTAL_MINIWAY_IMAGES = 3;
-let currentMiniwayImage = 0;
-let miniwayImages = [];
-
-// Generate image paths (assuming images are named 1.jpeg, 2.jpeg, etc. in images/miniway folder)
-function initMiniwayGallery() {
-    miniwayImages = [];
-    for (let i = 1; i <= TOTAL_MINIWAY_IMAGES; i++) {
-        miniwayImages.push(`images/miniway/${i}.jpeg`);
-    }
-    totalImagesSpan.textContent = TOTAL_MINIWAY_IMAGES;
-}
-
-// Load main image
-function loadMainImage(index) {
-    currentMiniwayImage = index;
-    miniwayGallery.innerHTML = `<img src="${miniwayImages[index]}" alt="Miniway Screenshot ${index + 1}" loading="lazy">`;
-    currentImageSpan.textContent = index + 1;
-    
-    // Update thumbnail active state
-    const thumbnails = miniwayThumbnails.querySelectorAll('.thumbnail');
-    thumbnails.forEach((thumb, i) => {
-        thumb.classList.toggle('active', i === index);
-    });
-    
-    // Scroll thumbnail into view
-    if (thumbnails[index]) {
-        thumbnails[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    }
-}
-
-// Load thumbnails (lazy load in batches)
-function loadThumbnails() {
-    miniwayThumbnails.innerHTML = '';
-    miniwayImages.forEach((src, index) => {
-        const thumb = document.createElement('div');
-        thumb.className = `thumbnail ${index === 0 ? 'active' : ''}`;
-        thumb.innerHTML = `<img src="${src}" alt="Thumbnail ${index + 1}" loading="lazy">`;
-        thumb.addEventListener('click', () => loadMainImage(index));
-        miniwayThumbnails.appendChild(thumb);
-    });
-}
-
-// Open gallery modal
-function openMiniwayModal() {
-    initMiniwayGallery();
-    loadThumbnails();
-    loadMainImage(0);
-    miniwayModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-// Close gallery modal
-function closeMiniwayModal() {
-    miniwayModal.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-// Navigation
-function nextImage() {
-    const newIndex = (currentMiniwayImage + 1) % miniwayImages.length;
-    loadMainImage(newIndex);
-}
-
-function prevImage() {
-    const newIndex = (currentMiniwayImage - 1 + miniwayImages.length) % miniwayImages.length;
-    loadMainImage(newIndex);
-}
-
-// Event listeners for gallery
-galleryTriggers.forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        openMiniwayModal();
-    });
-});
-
-if (miniwayClose) {
-    miniwayClose.addEventListener('click', closeMiniwayModal);
-}
-
-if (galleryNext) {
-    galleryNext.addEventListener('click', nextImage);
-}
-
-if (galleryPrev) {
-    galleryPrev.addEventListener('click', prevImage);
-}
-
-// Close on outside click
-if (miniwayModal) {
-    miniwayModal.addEventListener('click', (e) => {
-        if (e.target === miniwayModal) {
-            closeMiniwayModal();
-        }
-    });
-}
-
-// Keyboard navigation for gallery
-document.addEventListener('keydown', (e) => {
-    if (miniwayModal && miniwayModal.classList.contains('active')) {
-        if (e.key === 'Escape') {
-            closeMiniwayModal();
-        } else if (e.key === 'ArrowRight') {
-            nextImage();
-        } else if (e.key === 'ArrowLeft') {
-            prevImage();
-        }
-    }
-    // Admin gallery keyboard navigation
-    if (adminModal && adminModal.classList.contains('active')) {
-        if (e.key === 'Escape') {
-            closeAdminModal();
-        } else if (e.key === 'ArrowRight') {
-            nextAdminImage();
-        } else if (e.key === 'ArrowLeft') {
-            prevAdminImage();
-        }
-    }
-});
-
-// ===== ADMIN DASHBOARD GALLERY =====
-const adminModal = document.getElementById('admin-modal');
-const adminGallery = document.getElementById('admin-gallery');
-const adminThumbnails = document.getElementById('admin-thumbnails');
-const adminClose = document.getElementById('admin-close');
-const adminGalleryPrev = document.getElementById('admin-gallery-prev');
-const adminGalleryNext = document.getElementById('admin-gallery-next');
-const adminCurrentImageSpan = document.getElementById('admin-current-image');
-const adminTotalImagesSpan = document.getElementById('admin-total-images');
-const adminGalleryTriggers = document.querySelectorAll('.admin-gallery-trigger');
-
-// Admin dashboard images
-const adminImages = [
-    'images/miniway/admindashboard.png',
-    'images/miniway/analytics.png',
-    'images/miniway/route.png'
-];
-let currentAdminImage = 0;
-
-// Load admin main image
-function loadAdminMainImage(index) {
-    currentAdminImage = index;
-    adminGallery.innerHTML = `<img src="${adminImages[index]}" alt="Admin Dashboard Screenshot ${index + 1}" loading="lazy">`;
-    adminCurrentImageSpan.textContent = index + 1;
-    
-    // Update thumbnail active state
-    const thumbnails = adminThumbnails.querySelectorAll('.thumbnail');
-    thumbnails.forEach((thumb, i) => {
-        thumb.classList.toggle('active', i === index);
-    });
-}
-
-// Load admin thumbnails
-function loadAdminThumbnails() {
-    adminThumbnails.innerHTML = '';
-    adminImages.forEach((src, index) => {
-        const thumb = document.createElement('div');
-        thumb.className = `thumbnail ${index === 0 ? 'active' : ''}`;
-        thumb.innerHTML = `<img src="${src}" alt="Thumbnail ${index + 1}" loading="lazy">`;
-        thumb.addEventListener('click', () => loadAdminMainImage(index));
-        adminThumbnails.appendChild(thumb);
-    });
-}
-
-// Open admin gallery modal
-function openAdminModal() {
-    adminTotalImagesSpan.textContent = adminImages.length;
-    loadAdminThumbnails();
-    loadAdminMainImage(0);
-    adminModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-// Close admin gallery modal
-function closeAdminModal() {
-    adminModal.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-// Admin navigation
-function nextAdminImage() {
-    const newIndex = (currentAdminImage + 1) % adminImages.length;
-    loadAdminMainImage(newIndex);
-}
-
-function prevAdminImage() {
-    const newIndex = (currentAdminImage - 1 + adminImages.length) % adminImages.length;
-    loadAdminMainImage(newIndex);
-}
-
-// Event listeners for admin gallery
-adminGalleryTriggers.forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        openAdminModal();
-    });
-});
-
-if (adminClose) {
-    adminClose.addEventListener('click', closeAdminModal);
-}
-
-if (adminGalleryNext) {
-    adminGalleryNext.addEventListener('click', nextAdminImage);
-}
-
-if (adminGalleryPrev) {
-    adminGalleryPrev.addEventListener('click', prevAdminImage);
-}
-
-// Close admin modal on outside click
-if (adminModal) {
-    adminModal.addEventListener('click', (e) => {
-        if (e.target === adminModal) {
-            closeAdminModal();
-        }
-    });
-}
-
-// ===== INITIALIZE =====
-document.addEventListener('DOMContentLoaded', () => {
-    // Initial skill bar check
-    setTimeout(animateSkillBars, 500);
-    
-    // Set first nav link as active
-    if (navLinksItems.length > 0) {
-        navLinksItems[0].classList.add('active');
-    }
-});
-
-// ===== CONSOLE EASTER EGG =====
-console.log('%c👋 Hello there, curious developer!', 'font-size: 20px; font-weight: bold; color: #6c63ff;');
-console.log('%cFeel free to explore the code!', 'font-size: 14px; color: #00d9ff;');
-console.log('%cPortfolio created with ❤️ by John Doe', 'font-size: 12px; color: #a0a0b0;');
-
