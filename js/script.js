@@ -130,6 +130,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     caption: 'Interactive Route Topology & Waypoint Management Console'
                 }
             ]
+        },
+        tesda: {
+            title: 'TESDA Client Satisfaction Measurement (CSM) System',
+            category: 'System Development',
+            github: '#',
+            items: [
+                {
+                    src: 'images/tesdacsm/admindashboard.png',
+                    caption: 'Administrative Dashboard & Overview'
+                },
+                {
+                    src: 'images/tesdacsm/clientdashboard.png',
+                    caption: 'Client Dashboard & Data Visualization'
+                },
+                {
+                    src: 'images/tesdacsm/long_strip_client_feedback_form.png',
+                    caption: 'Client Feedback Form for Service Rating',
+                    isScrollable: true
+                }
+            ]
         }
     };
 
@@ -143,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const galleryCategory = document.getElementById('galleryCategory');
     const galleryGitLink = document.getElementById('galleryGitLink');
     const galleryMainImg = document.getElementById('galleryMainImg');
+    const galleryDisplay = document.querySelector('.gallery-display');
     const galleryCaption = document.getElementById('galleryCaption');
     const galleryCurrentIdx = document.getElementById('galleryCurrentIdx');
     const galleryTotalIdx = document.getElementById('galleryTotalIdx');
@@ -158,6 +179,15 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             galleryMainImg.src = currentItem.src;
             galleryCaption.textContent = currentItem.caption;
+            
+            if (currentItem.isScrollable) {
+                galleryMainImg.classList.add('scrollable-img');
+                if (galleryDisplay) galleryDisplay.classList.add('scrollable-display');
+            } else {
+                galleryMainImg.classList.remove('scrollable-img');
+                if (galleryDisplay) galleryDisplay.classList.remove('scrollable-display');
+            }
+            
             galleryMainImg.style.opacity = '1';
         }, 120);
 
@@ -218,7 +248,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Attach Gallery Triggers
     document.querySelectorAll('.gallery-trigger').forEach(btn => {
-        btn.addEventListener('click', () => openGallery('miniway'));
+        btn.addEventListener('click', () => {
+            const galleryKey = btn.getAttribute('data-gallery') || 'miniway';
+            openGallery(galleryKey);
+        });
     });
 
     document.querySelectorAll('.admin-gallery-trigger').forEach(btn => {

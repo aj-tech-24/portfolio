@@ -1662,6 +1662,24 @@ a.cli-val:hover {
     transition: opacity 0.2s ease;
 }
 
+.gallery-display.scrollable-display {
+    overflow-y: auto;
+    display: block;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.gallery-main-image.scrollable-img {
+    max-height: none;
+    max-width: 480px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid #1e293b;
+}
+
 .gallery-caption {
     font-family: var(--font-mono);
     font-size: 0.82rem;
